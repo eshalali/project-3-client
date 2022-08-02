@@ -1,5 +1,5 @@
-# Project 3 Book Forum
-
+# Project 3 - Book Nook
+A platform for book-lovers to browse, favorite, and add books. Users can like and comment on individual books allowing for intellectual discourse. Every month, registered users will have access to a book club, with thought-provoking questions to guide their reading. Overall, Book Nook is an all-in-one resource any reader would love.
 
 ## User Stories
 #### Registered user
@@ -45,7 +45,7 @@
 ## API
 #### Google Books API
 
-### Included Routes
+## Included Routes
 
 
 ## Roles
