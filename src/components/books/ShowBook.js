@@ -10,14 +10,14 @@ import LoadingScreen from '../shared/LoadingScreen'
 import { getOneBook, updateBook, removeBook } from '../../api/books'
 import messages from '../shared/AutoDismissAlert/messages'
 import EditBookModal from './EditBookModal'
-import NewToyModal from '../toys/NewToyModal'
-import ShowToy from '../toys/ShowToy'
+import NewCommentModal from '../comments/NewCommentModal'
+import ShowComment from '../Comments/ShowComment'
 
 // We need to get the book's id from the parameters
 // Then we need to make a request to the api
 // Then we need to display the results in this component
 
-// we'll use a style object to lay out the toy cards
+// we'll use a style object to lay out the Comment cards
 const cardContainerLayout = {
     display: 'flex',
     justifyContent: 'center',
@@ -27,7 +27,7 @@ const cardContainerLayout = {
 const ShowBook = (props) => {
     const [book, setBook] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
-    const [toyModalShow, setToyModalShow] = useState(false)
+    const [commentModalShow, setCommentModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
     const { id } = useParams()
@@ -77,13 +77,13 @@ const ShowBook = (props) => {
                 })
             })
     }
-    let toyCards
+    let commentCards
     if (book) {
-        if (book.toys.length > 0) {
-            toyCards = book.toys.map(toy => (
-                <ShowToy 
-                    key={toy._id}
-                    toy={toy}
+        if (book.comments.length > 0) {
+            commentCards = book.comments.map(comment => (
+                <ShowComment  
+                    key={comment._id}
+                    comment={comment}
                     book={book}
                     user={user}
                     msgAlert={msgAlert}
@@ -112,10 +112,10 @@ const ShowBook = (props) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button onClick={() => setToyModalShow(true)}
+                        <Button onClick={() => setCommentModalShow(true)}
                             className="m-2" variant="info"
                         >
-                            Give {book.name} a toy!
+                            Give {book.name} a comment!
                         </Button>
                         {
                             book.owner && user && book.owner._id === user._id 
@@ -141,7 +141,7 @@ const ShowBook = (props) => {
                 </Card>
             </Container>
             <Container style={cardContainerLayout}>
-                {toyCards}
+                {commentCards}
             </Container>
             <EditBookModal 
                 user={user}
@@ -152,13 +152,13 @@ const ShowBook = (props) => {
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setEditModalShow(false)} 
             />
-            <NewToyModal 
+            <NewCommentModal 
                 book={book}
-                show={toyModalShow}
+                show={commentModalShow}
                 user={user}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
-                handleClose={() => setToyModalShow(false)} 
+                handleClose={() => setCommentModalShow(false)} 
             />
         </>
     )
