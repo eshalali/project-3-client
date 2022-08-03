@@ -52,6 +52,28 @@ A platform for book-lovers to browse, favorite, and add books. Users can like an
 
 ## API
 #### Google Books API
+* Google Books Search API:
+https://www.googleapis.com/books/v1/volumes?q=search+terms
+
+* Example: 
+https://www.googleapis.com/books/v1/volumes?q=harry+potter
+
+* Note: Performing a search does not require authentication, so you do not have to provide the Authorization HTTP header with the GET request. HOWEVER, if the call is made with authentication, each Volume will include user-specific information, such as purchased status.
+
+* Google Books Search API with apiKey:
+“https://www.googleapis.com/books/v1/volumes?q=search+terms&key=” + apiKey
+
+* Google Books Search API with apiKey and max amount of results:
+“https://www.googleapis.com/books/v1/volumes?q=search+terms&key=” + apiKey + “&maxResults=NUMBER”
+
+* apiKey = AIzaSyCSmDTalLl9OYiDr2R0pDecP0x5t9Cadn8
+
+* Example With apiKey and Max Result: 
+https://www.googleapis.com/books/v1/volumes?q=harry+potter&key=AIzaSyCSmDTalLl9OYiDr2R0pDecP0x5t9Cadn8&maxResults=2
+
+* Google Books API DOCS: 
+https://developers.google.com/books/docs/v1/using
+
 
 ## Routes
 ### User Routes
