@@ -48,37 +48,58 @@ A platform for book-lovers to browse, favorite, and add books. Users can like an
 ![Book Club](https://i.imgur.com/9gJnhO1l.png)
 
 ## ERD
-![erds](./public/Project3ERDs.jpg)
+![erds](./images/Project3ERDs.jpg)
 
 ## API
 #### Google Books API
+* Google Books Search API:
+https://www.googleapis.com/books/v1/volumes?q=search+terms
+
+* Example: 
+https://www.googleapis.com/books/v1/volumes?q=harry+potter
+
+* Note: Performing a search does not require authentication, so you do not have to provide the Authorization HTTP header with the GET request. HOWEVER, if the call is made with authentication, each Volume will include user-specific information, such as purchased status.
+
+* Google Books Search API with apiKey:
+“https://www.googleapis.com/books/v1/volumes?q=search+terms&key=” + apiKey
+
+* Google Books Search API with apiKey and max amount of results:
+“https://www.googleapis.com/books/v1/volumes?q=search+terms&key=” + apiKey + “&maxResults=NUMBER”
+
+* Google Books API DOCS: 
+https://developers.google.com/books/docs/v1/using
 
 ## Routes
 ### User Routes
-| Route           | Description |
-|------------------------|-------------------|
-| `/sign-up`             | create account  |
-| `/sign-in`             | sign into account   |
-| `/change-password/` | change password  |
-| `/sign-out/`        | signout  |
+| Verb   | URI Pattern            | Description |
+|--------|------------------------|-------------------|
+| POST   | `/sign-up`             | create account  |
+| POST   | `/sign-in`             | sign into account   |
+| PATCH  | `/change-password/` | change password  |
+| DELETE | `/sign-out/`        | signout  |
 
 ### Book Routes
-| Route          | Description |
-|------------------------|-------------------|
-| `/books`             | books index page   |
-|`/books/:id`             | books show page   |
-| `/newBook`             | new book  |
-| `/books/:id/edit` | update a book  |
+| Verb   | URI Pattern            | Description |
+|--------|------------------------|-------------------|
+| GET   | `/books`             | show all books   |
+| GET   | `/books/:id`             | show one book   |
+| POST   | `/books`             | create a book  |
+| PATCH  | `/books/:id` | update a book  |
+| DELETE | `/books/:id`        | delete a book  |
 
-### Comment Routes
-| Route          | Description |
-|------------------------|-------------------|
-|`/books/:id`             | add, edit, and delete comments on book's page |
+### Comments Routes
+| Verb   | URI Pattern            | Description |
+|--------|------------------------|-------------------|
+| POST   | `/comments/:bookId`             | create a comment    |
+| PATCH  | `/comments/:bookId/:commentId` | update a comment  |
+| DELETE | `/comments/:bookId/:commentId`        | delete a comment   |
 
-### Favorites Routes
-| Route          | Description |
-|------------------------|-------------------|
-|`/favorites`             | favorites index page|
+### Comments Routes
+| Verb   | URI Pattern            | Description |
+|--------|------------------------|-------------------|
+| GET   | `/favorites`             | see all favorites   |
+| POST   | `/favorites/:id`             | add book to favorites   |
+| DELETE | `/favorites/:id`        | remove book from favorites   |
 
 
 ## Roles
