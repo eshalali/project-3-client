@@ -33,7 +33,7 @@ const BookForm = (props) => {
                     type="text"
                     name="description"
                     id="description"
-                    value={ pet.description }
+                    value={ book.description }
                     onChange={ handleChange }
                 />
                 <Form.Label htmlFor="uploadImage">Image</Form.Label>           
