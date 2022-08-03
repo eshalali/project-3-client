@@ -37,7 +37,6 @@ A platform for book-lovers to browse, favorite, and add books. Users can like an
 * As a unregistered user, I want to be able to see the book club book
 
 ## Wireframes
-
 ![StartPage](https://i.imgur.com/6H6f5L3l.png)
 ![Login](https://i.imgur.com/TNNsw0gl.png)
 ![Sign Up](https://i.imgur.com/1ts3qvtl.jpg)
@@ -47,9 +46,6 @@ A platform for book-lovers to browse, favorite, and add books. Users can like an
 ![Add A Book](https://i.imgur.com/kxsuZObl.png)
 ![Edit A Book](https://i.imgur.com/JkwhgmDl.png)
 ![Book Club](https://i.imgur.com/9gJnhO1l.png)
-
-
-
 
 ## ERD
 ![erds](./public/Project3ERDs.jpg)
@@ -86,4 +82,6 @@ A platform for book-lovers to browse, favorite, and add books. Users can like an
 
 
 ## Roles
-
+Manager - Eshal
+Front End SMEs - Neil, Erisha
+Back End SME - James
