@@ -38,6 +38,18 @@ A platform for book-lovers to browse, favorite, and add books. Users can like an
 
 ## Wireframes
 
+![StartPage](https://i.imgur.com/6H6f5L3l.png)
+![Login](https://i.imgur.com/TNNsw0gl.png)
+![Sign Up](https://i.imgur.com/1ts3qvtl.jpg)
+![Index](https://i.imgur.com/SStY7X0l.png)
+![User's Library](https://i.imgur.com/DqBReSml.png)
+![Show Book](https://i.imgur.com/9QcMdS2l.png)
+![Add A Book](https://i.imgur.com/kxsuZObl.png)
+![Edit A Book](https://i.imgur.com/JkwhgmDl.png)
+![Book Club](https://i.imgur.com/9gJnhO1l.png)
+
+
+
 
 ## ERD
 ![erds](./public/Project3ERDs.jpg)
