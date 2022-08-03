@@ -45,7 +45,32 @@ A platform for book-lovers to browse, favorite, and add books. Users can like an
 ## API
 #### Google Books API
 
-## Included Routes
+## Routes
+### User Routes
+| Route           | Description |
+|------------------------|-------------------|
+| `/sign-up`             | create account  |
+| `/sign-in`             | sign into account   |
+| `/change-password/` | change password  |
+| `/sign-out/`        | signout  |
+
+### Book Routes
+| Route          | Description |
+|------------------------|-------------------|
+| `/books`             | books index page   |
+|`/books/:id`             | books show page   |
+| `/newBook`             | new book  |
+| `/books/:id/edit` | update a book  |
+
+### Comment Routes
+| Route          | Description |
+|------------------------|-------------------|
+|`/books/:id`             | add, edit, and delete comments on book's page |
+
+### Favorites Routes
+| Route          | Description |
+|------------------------|-------------------|
+|`/favorites`             | favorites index page|
 
 
 ## Roles
