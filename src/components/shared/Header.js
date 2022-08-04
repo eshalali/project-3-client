@@ -9,14 +9,6 @@ const linkStyle = {
 const authenticatedOptions = (
 	<>
 		<Nav.Item className='m-2'>
-<<<<<<< HEAD
-=======
-			<Link to="/addPet" style={ linkStyle }>
-				Add a Book
-			</Link>
-		</Nav.Item>
-		<Nav.Item className='m-2'>
->>>>>>> apimodels
 			<Link to='change-password' style={linkStyle}>
 				Change Password
 			</Link>
