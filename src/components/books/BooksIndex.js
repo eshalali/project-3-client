@@ -5,8 +5,8 @@ import {
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 
-//import LoadingScreen from '../shared/LoadingScreen'
-//import { getAllBooks } from '../../api/books'
+import LoadingScreen from '../shared/LoadingScreen'
+import { getAllBooks } from '../../api/books'
 import messages from '../shared/AutoDismissAlert/messages'
 
 // BooksIndex should make a request to the api
@@ -26,12 +26,12 @@ const BooksIndex = (props) => {
 
     const { msgAlert } = props
 
-    console.log('Props in BooksIndex', props)
+    // console.log('Props in BooksIndex', props)
 
     useEffect(() => {
         console.log(props)
         getAllBooks()
-            .then(res => setBooks(res.data.books))
+            .then(res => setBooks(res.data.data))
             .catch(err => {
                 msgAlert({
                     heading: 'Error Getting Books',
@@ -55,7 +55,7 @@ const BooksIndex = (props) => {
 
     const bookCards = books.map(book => (
         <Card style={{ width: '30%', margin: 5}} key={ book.id }>
-            <Card.Header>{ book.fullTitle }</Card.Header>
+            <Card.Header>{ book.volumeInfo.title }</Card.Header>
             <Card.Body>
                 <Card.Text>
                     <Link to={`/books/${book.id}`}>View { book.name }</Link>
@@ -63,6 +63,16 @@ const BooksIndex = (props) => {
             </Card.Body>
         </Card>
     ))
+    // const googleBookCards = books.map(book => (
+    //     <Card style={{ width: '30%', margin: 5}} key={ book.id }>
+    //         <Card.Header>{ book.fullTitle }</Card.Header>
+    //         <Card.Body>
+    //             <Card.Text>
+    //                 <Link to={`/books/${book.id}`}>View { book.name }</Link>
+    //             </Card.Text>
+    //         </Card.Body>
+    //     </Card>
+    // ))
 
     return (
         <div style={ cardContainerStyle }>

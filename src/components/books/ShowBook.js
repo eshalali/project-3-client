@@ -42,6 +42,7 @@ const ShowBook = (props) => {
 
     useEffect(() => {
         getOneBook(id)
+
             .then(res => setBook(res.data.book))
             .catch(err => {                   
                 msgAlert({
@@ -131,7 +132,7 @@ const ShowBook = (props) => {
                                     className="m-2"
                                     variant="danger"
                                 >
-                                    Set {Book.name} Free
+                                    Set {book.name} Free
                                 </Button>
                             </>
                             :

@@ -9,14 +9,11 @@ const linkStyle = {
 const authenticatedOptions = (
 	<>
 		<Nav.Item className='m-2'>
-<<<<<<< HEAD
-=======
-			<Link to="/addPet" style={ linkStyle }>
+			<Link to="/BookForm" style={ linkStyle }>
 				Add a Book
 			</Link>
 		</Nav.Item>
 		<Nav.Item className='m-2'>
->>>>>>> apimodels
 			<Link to='change-password' style={linkStyle}>
 				Change Password
 			</Link>
@@ -33,17 +30,12 @@ const authenticatedOptions = (
 const unauthenticatedOptions = (
 	<>
         <Nav.Item className='m-2'>
-<<<<<<< HEAD
-		    <Link to='sign-up' style={linkStyle}>Sign Up</Link>
-        </Nav.Item>
-        <Nav.Item className='m-2'>
-		    <Link to='sign-in' style={linkStyle}>Sign In</Link>
-=======
-			<Link to='sign-up' style={linkStyle}>Sign Up</Link>
-        </Nav.Item>
-        <Nav.Item className='m-2'>
-			<Link to='sign-in' style={linkStyle}>Sign In</Link>
->>>>>>> apimodels
+{/* <<<<<<< HEAD */}
+		<Link to='sign-up' style={linkStyle}>Sign Up</Link>
+			</Nav.Item>
+			<Nav.Item className='m-2'>
+		<Link to='sign-in' style={linkStyle}>Sign In</Link>
+{/* >>>>>>> apimodels */}
         </Nav.Item>
 	</>
 )
