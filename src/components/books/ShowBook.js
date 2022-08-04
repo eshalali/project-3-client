@@ -10,8 +10,12 @@ import LoadingScreen from '../shared/LoadingScreen'
 import { getOneBook, updateBook, removeBook } from '../../api/books'
 import messages from '../shared/AutoDismissAlert/messages'
 import EditBookModal from './EditBookModal'
-import NewCommentModal from '../comments/NewCommentModal'
-import ShowComment from '../Comments/ShowComment'
+//import NewCommentModal from '../comments/NewCommentModal'
+//import ShowComment from '../Comments/ShowComment'
+
+
+
+
 
 // We need to get the book's id from the parameters
 // Then we need to make a request to the api
@@ -77,21 +81,24 @@ const ShowBook = (props) => {
                 })
             })
     }
-    let commentCards
-    if (book) {
-        if (book.comments.length > 0) {
-            commentCards = book.comments.map(comment => (
-                <ShowComment  
-                    key={comment._id}
-                    comment={comment}
-                    book={book}
-                    user={user}
-                    msgAlert={msgAlert}
-                    triggerRefresh={() => setUpdated(prev => !prev)}
-                />
-            ))
-        }
-    }
+   
+   
+   
+    // let commentCards
+    // if (book) {
+    //     if (book.comments.length > 0) {
+    //         commentCards = book.comments.map(comment => (
+    //             <ShowComment  
+    //                 key={comment._id}
+    //                 comment={comment}
+    //                 book={book}
+    //                 user={user}
+    //                 msgAlert={msgAlert}
+    //                 triggerRefresh={() => setUpdated(prev => !prev)}
+    //             />
+    //         ))
+    //     }
+    //}
 
     if (!book) {
         return <LoadingScreen />
@@ -131,7 +138,7 @@ const ShowBook = (props) => {
                                     className="m-2"
                                     variant="danger"
                                 >
-                                    Set {Book.name} Free
+                                    Set {book.name} Free
                                 </Button>
                             </>
                             :
@@ -140,10 +147,12 @@ const ShowBook = (props) => {
                     </Card.Footer>
                 </Card>
             </Container>
-            <Container style={cardContainerLayout}>
+            {/* <Container style={cardContainerLayout}>
                 {commentCards}
-            </Container>
-            <EditBookModal 
+            </Container>  */}
+
+
+             <EditBookModal 
                 user={user}
                 book={book} 
                 show={editModalShow} 
@@ -151,15 +160,15 @@ const ShowBook = (props) => {
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setEditModalShow(false)} 
-            />
-            <NewCommentModal 
+            /> 
+             {/* <NewCommentModal 
                 book={book}
                 show={commentModalShow}
                 user={user}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setCommentModalShow(false)} 
-            />
+            /> */}
         </>
     )
 }

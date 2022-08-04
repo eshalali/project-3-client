@@ -13,6 +13,10 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import BooksIndex from './components/books/BooksIndex'
+import CreateBook from './components/books/CreateBook'
+import ShowBook from './components/books/ShowBook'
+import EditBookModal from './components/books/EditBookModal'
+
 const App = () => {
 
   const [user, setUser] = useState(null)
@@ -69,11 +73,23 @@ const App = () => {
               </RequireAuth>}
           />
           <Route
+            path='/books/addBook'
+            element={
+              <RequireAuth user={user}>
+                <CreateBook msgAlert={msgAlert} user={user} />
+              </RequireAuth>}
+          /> 
+           <Route
             path='/books'
             element={
                 <BooksIndex msgAlert={msgAlert} user={user} />
              }
-          />
+          /> 
+		   <Route
+					path="/books/:id"
+					element={ <ShowBook user={ user } msgAlert={ msgAlert } />}
+				/>
+			
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
