@@ -5,8 +5,8 @@ import {
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 
-//import LoadingScreen from '../shared/LoadingScreen'
-//import { getAllBooks } from '../../api/books'
+import LoadingScreen from '../shared/LoadingScreen'
+import { getAllBooks } from '../../api/books'
 import messages from '../shared/AutoDismissAlert/messages'
 
 // BooksIndex should make a request to the api
@@ -55,7 +55,7 @@ const BooksIndex = (props) => {
 
     const bookCards = books.map(book => (
         <Card style={{ width: '30%', margin: 5}} key={ book.id }>
-            <Card.Header>{ book.fullTitle }</Card.Header>
+            <Card.Header>{ book.title }</Card.Header>
             <Card.Body>
                 <Card.Text>
                     <Link to={`/books/${book.id}`}>View { book.name }</Link>

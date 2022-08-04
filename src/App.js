@@ -3,7 +3,7 @@ import React, { useState, Fragment } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
-// import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
+//import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
 import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/shared/Header'
 import RequireAuth from './components/shared/RequireAuth'
@@ -12,7 +12,7 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
-
+import BooksIndex from './components/books/BooksIndex'
 const App = () => {
 
   const [user, setUser] = useState(null)
@@ -67,6 +67,12 @@ const App = () => {
               <RequireAuth user={user}>
                 <ChangePassword msgAlert={msgAlert} user={user} />
               </RequireAuth>}
+          />
+          <Route
+            path='/books'
+            element={
+                <BooksIndex msgAlert={msgAlert} user={user} />
+             }
           />
 				</Routes>
 				{msgAlerts.map((msgAlert) => (

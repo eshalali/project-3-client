@@ -7,7 +7,13 @@ const linkStyle = {
     textDecoration: 'none'
 }
 const authenticatedOptions = (
+
 	<>
+	<Nav.Item className='m-2'>
+            <Link to="/addBook" style={ linkStyle }>
+                Add a Book
+            </Link>
+        </Nav.Item>
 		<Nav.Item className='m-2'>
 			<Link to='change-password' style={linkStyle}>
 				Change Password
