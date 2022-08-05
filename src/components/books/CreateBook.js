@@ -19,10 +19,10 @@ const CreateBook = (props) => {
 
     console.log('this is book in createBook', book)
 
-    // const handleChange = (e) => {
-    //     setBook(prevBook => {
-    //         let updatedValue = e.target.value
-    //         const updatedName = e.target.name
+    const handleChange = (e) => {
+        setBook(prevBook => {
+            let updatedValue = e.target.value
+            const updatedName = e.target.name
 
     //         console.log('this is the input type', e.target.type)
 
@@ -45,8 +45,8 @@ const CreateBook = (props) => {
     //             ...prevBook,
     //             ...updatedBook
     //         }
-    //     })
-    // }
+        })
+    }
 
     // We'll add a handleSubmit here that makes an api request, then handles the response
     const handleSubmit = (e) => {

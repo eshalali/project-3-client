@@ -9,6 +9,11 @@ const linkStyle = {
 const authenticatedOptions = (
 	<>
 		<Nav.Item className='m-2'>
+			<Link to="/createBook" style={ linkStyle }>
+				Add a Book
+			</Link>
+		</Nav.Item>
+		<Nav.Item className='m-2'>
 			<Link to='change-password' style={linkStyle}>
 				Change Password
 			</Link>
@@ -25,10 +30,19 @@ const authenticatedOptions = (
 const unauthenticatedOptions = (
 	<>
         <Nav.Item className='m-2'>
+<<<<<<< HEAD
 		    <Link to='sign-up' style={linkStyle}>Sign Up</Link>
         </Nav.Item>
         <Nav.Item className='m-2'>
 		    <Link to='sign-in' style={linkStyle}>Sign In</Link>
+=======
+{/* <<<<<<< HEAD */}
+		<Link to='sign-up' style={linkStyle}>Sign Up</Link>
+			</Nav.Item>
+			<Nav.Item className='m-2'>
+		<Link to='sign-in' style={linkStyle}>Sign In</Link>
+{/* >>>>>>> apimodels */}
+>>>>>>> bookComponents2
         </Nav.Item>
 	</>
 )
@@ -46,7 +60,7 @@ const alwaysOptions = (
 const Header = ({ user }) => (
 	<Navbar bg='primary' variant='dark' expand='md'>
 		<Navbar.Brand>
-            <Link to='/' style={linkStyle}>
+            <Link to='/books' style={linkStyle}>
                 Books
             </Link>
         </Navbar.Brand>
