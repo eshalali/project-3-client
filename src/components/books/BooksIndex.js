@@ -61,7 +61,7 @@ const BooksIndex = (props) => {
             <Card.Body>
             <img src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}></img>
                 <Card.Text>
-                    <Link to={`/books/${book.id}`}>View: { book.volumeInfo.title }</Link>
+                    <Link to={`/books/google/${book.id}`}>View: { book.volumeInfo.title }</Link>
                 </Card.Text>
             </Card.Body>
         </Card>

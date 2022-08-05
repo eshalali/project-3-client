@@ -8,6 +8,7 @@ export const getAllBooks = () => {
 
 // READ => SHOW
 export const getOneBook = (id) => {
+    console.log("here is the ID", id)
     return axios(`${apiUrl}/books/google/${id}`)
 }
 

@@ -47,41 +47,48 @@ const App = () => {
 				<Header user={user} />
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
-					<Route
-						path='/sign-up'
-						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
-					/>
-					<Route
-						path='/sign-in'
-						element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
-					/>
-				<Route
-					path='/sign-out'
-					element={
-					<RequireAuth user={user}>
-						<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
-					</RequireAuth>
-					}
-				/>
-				<Route
-					path='/change-password'
-					element={
-						<RequireAuth user={user}>
-						<ChangePassword msgAlert={msgAlert} user={user} />
-					</RequireAuth>}
-				/>
 						<Route
-							path='/books'
+							path='/sign-up'
+							element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
+						/>
+						<Route
+							path='/sign-in'
+							element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
+						/>
+						<Route
+							path='/sign-out'
 							element={
-								<BooksIndex msgAlert={msgAlert} clearUser={clearUser} user={user} />							
+							<RequireAuth user={user}>
+								<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
+							</RequireAuth>
 							}
 						/>
 						<Route
-							path='/books/:id'
+							path='/change-password'
+							element={
+								<RequireAuth user={user}>
+								<ChangePassword msgAlert={msgAlert} user={user} />
+							</RequireAuth>}
+						/>
+							<Route
+								path='/books'
+								element={
+									<BooksIndex msgAlert={msgAlert} clearUser={clearUser} user={user} />							
+								}
+						/>
+						<Route
+							path='/books/google/:id'
 							element={
 								<ShowBook msgAlert={msgAlert} clearUser={clearUser} user={user} />							
 							}
 						/>
+						<Route
+					path='/books'
+					element={
+						<RequireAuth user={user}>
+						<CreateBook msgAlert={msgAlert} user={user} />
+					</RequireAuth>}
+				/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
