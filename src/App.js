@@ -13,6 +13,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import BooksIndex from './components/books/BooksIndex'
+// import ShowBook from './components/books/ShowBook'
 
 const App = () => {
 
@@ -75,6 +76,12 @@ const App = () => {
 								<BooksIndex msgAlert={msgAlert} clearUser={clearUser} user={user} />							
 							}
 						/>
+						{/* <Route
+							path='/books'
+							element={
+								<ShowBook msgAlert={msgAlert} clearUser={clearUser} user={user} />							
+							}
+						/> */}
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert

@@ -6,7 +6,7 @@ import { updateBookSuccess, updateBookFailure } from '../shared/AutoDismissAlert
 const EditBookModal = (props) => {
     const { 
         user, show, handleClose, 
-        update, msgAlert, triggerRefresh
+        updateBook, msgAlert, triggerRefresh
     } = props
 
     const [book, setBook] = useState(props.book)

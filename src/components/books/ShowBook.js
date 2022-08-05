@@ -102,14 +102,13 @@ const ShowBook = (props) => {
         <>
             <Container className="fluid">
                 <Card>
-                    <Card.Header>{ book.fullTitle }</Card.Header>
+                    <Card.Header>{ book.data.Title }</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <div><small>Age: { book.age }</small></div>
-                            <div><small>Type: { book.type }</small></div>
-                            <div><small>
-                                Adoptable: { book.adoptable ? 'yes' : 'no'}
-                            </small></div>
+                            <div><small>Title: { book.age }</small></div>
+                            <div><small>Author: { book.type }</small></div>
+                            <div><small>description: </small></div>
+                            
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
