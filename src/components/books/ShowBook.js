@@ -11,7 +11,8 @@ import { getOneBook, updateBook, removeBook } from '../../api/books'
 import messages from '../shared/AutoDismissAlert/messages'
 import EditBookModal from './EditBookModal'
 import NewCommentModal from '../comments/NewCommentModal'
-import ShowComment from '../Comments/ShowComment'
+import ShowComment from '../comments/ShowComment'
+import deleteComment from '../../api/comments'
 
 // We need to get the book's id from the parameters
 // Then we need to make a request to the api
@@ -108,7 +109,7 @@ const ShowBook = (props) => {
                             <div><small>Title: { book.age }</small></div>
                             <div><small>Author: { book.type }</small></div>
                             <div><small>description: </small></div>
-                            
+
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>

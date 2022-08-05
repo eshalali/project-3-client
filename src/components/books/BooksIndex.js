@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 
 import LoadingScreen from '../shared/LoadingScreen'
-import { getAllBooks } from '../../api/books'
+import { getAllBooks, getOneBook } from '../../api/books'
 import messages from '../shared/AutoDismissAlert/messages'
 
 
@@ -59,9 +59,9 @@ const BooksIndex = (props) => {
         <Card style={{ width: '30%', margin: 5}} key={ book.id }>
             <Card.Header>{ book.volumeInfo.title }</Card.Header>
             <Card.Body>
-                {/* <img src={img}></img> */}
+            <img src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}></img>
                 <Card.Text>
-                    <Link to={`/books/`}>View { book.volumeInfo.title }</Link>
+                    <Link to={`/books/${book.id}`}>View: { book.volumeInfo.title }</Link>
                 </Card.Text>
             </Card.Body>
         </Card>

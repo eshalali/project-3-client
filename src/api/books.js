@@ -8,7 +8,7 @@ export const getAllBooks = () => {
 
 // READ => SHOW
 export const getOneBook = (id) => {
-    return axios(`${apiUrl}/books/${id}`)
+    return axios(`${apiUrl}/books/google/${id}`)
 }
 
 // CREATE

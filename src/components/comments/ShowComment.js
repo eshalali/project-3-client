@@ -3,6 +3,7 @@ import { Card, Button } from 'react-bootstrap'
 import EditCommentModal from './EditCommentModal'
 import { deleteComment } from '../../api/comments'
 
+
 const ShowComment = (props) => {
     // destructure some props
     const { comment, book, user, triggerRefresh, msgAlert } = props
@@ -38,7 +39,7 @@ const ShowComment = (props) => {
                         ?
                         <>
                             <Button variant='warning' onClick={() => setEditModalShow(true)}>Edit Comment</Button>
-                            <Button variant='danger' onClick={() => destroyComment()}>Delete Commment</Button>
+                            <Button variant='danger' onClick={() => deleteComment()}>Delete Commment</Button>
                         </>
                         :
                         null
