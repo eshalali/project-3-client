@@ -1,5 +1,5 @@
 // import React, { Component, Fragment } from 'react'
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
@@ -13,11 +13,12 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import BooksIndex from './components/books/BooksIndex'
-// import ShowBook from './components/books/ShowBook'
+import ShowBook from './components/books/ShowBook'
 
 const App = () => {
 
 	const [user, setUser] = useState(null)
+	const [favorites, setFavorites] = useState([])
 	const [msgAlerts, setMsgAlerts] = useState([])
 
 	console.log('user in app', user)
@@ -42,6 +43,35 @@ const App = () => {
 		})
 	}
 
+	// useEffect(() => {
+	// 	const bookFavorites = JSON.parse(
+	// 		localStorage.getItem('book-favorites')
+	// 	);
+
+	// 	if (bookFavorites) {
+	// 		setFavorites(bookFavorites);
+	// 	}
+	// }, []);
+
+	const saveToLocalStorage = (items) => {
+		localStorage.setItem('book-favorites', JSON.stringify(items));
+	};
+	
+	const handleFavoriteClick = (book) => {
+		const newFavoriteList = [...favorites, book];
+		setFavorites(newFavoriteList);
+		saveToLocalStorage(newFavoriteList);
+	};
+
+	const handleRemoveClick = (book) => {
+		const updateFavoriteList = favorites.filter(
+			(favorite) => favorite.id !== book.id
+		);
+
+		setFavorites(updateFavoriteList);
+		saveToLocalStorage(updateFavoriteList);
+	};
+
 		return (
 			<Fragment>
 				<Header user={user} />
@@ -55,33 +85,37 @@ const App = () => {
 						path='/sign-in'
 						element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
 					/>
-				<Route
-					path='/sign-out'
-					element={
-					<RequireAuth user={user}>
-						<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
-					</RequireAuth>
-					}
-				/>
-				<Route
-					path='/change-password'
-					element={
+					<Route
+						path='/sign-out'
+						element={
 						<RequireAuth user={user}>
-						<ChangePassword msgAlert={msgAlert} user={user} />
-					</RequireAuth>}
-				/>
-						<Route
-							path='/books'
-							element={
-								<BooksIndex msgAlert={msgAlert} clearUser={clearUser} user={user} />							
-							}
-						/>
-						{/* <Route
-							path='/books'
-							element={
-								<ShowBook msgAlert={msgAlert} clearUser={clearUser} user={user} />							
-							}
-						/> */}
+							<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
+						</RequireAuth>
+						}
+					/>
+					<Route
+						path='/change-password'
+						element={
+							<RequireAuth user={user}>
+							<ChangePassword msgAlert={msgAlert} user={user} />
+						</RequireAuth>}
+					/>
+					<Route
+						path='/books'
+						element={
+							<BooksIndex 
+								msgAlert={msgAlert} clearUser={clearUser} user={user} 
+								handleFavoriteClick={handleFavoriteClick} favorites={ favorites } 
+								handleRemoveClick={handleRemoveClick}
+							/>							
+						}
+					/>
+					<Route
+						path='/books/google/:id'
+						element={
+							<ShowBook msgAlert={msgAlert} clearUser={clearUser} user={user} />							
+						}
+					/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert

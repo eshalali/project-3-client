@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom'
 import LoadingScreen from '../shared/LoadingScreen'
 import { getAllBooks } from '../../api/books'
 import messages from '../shared/AutoDismissAlert/messages'
+import AddFavorite from '../favorites/AddFavorite'
+import RemoveFavorite from '../favorites/RemoveFavorite'
+// import [favorites, setFavorites] from '../../app'
 
 
 // style for our card container
@@ -52,17 +55,30 @@ const BooksIndex = (props) => {
         return <p>No books yet. Better add some.</p>
     }
 
-    
-    
+    // const checkIfFavorited = () => {
+    //     books.map(book => {
+    //         if (!favorites.book.id) {
+    //             return  <div onClick={() => props.handleFavoriteClick(book)} className='controls'>
+    //                         <AddFavorite />
+    //                     </div>;
+    //         } else {
+    //             return  <div onClick={() => props.handleRemoveClick(book)} className='controls'>
+    //                         <RemoveFavorite /> 
+    //                     </div>
+    //         }
+    //     })
+    // }
 
     const bookCards = books.map(book => (
+
         <Card style={{ width: '30%', margin: 5}} key={ book.id }>
             <Card.Header>{ book.volumeInfo.title }</Card.Header>
             <Card.Body>
-                {/* <img src={img}></img> */}
+                <img src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}></img>
                 <Card.Text>
                     <Link to={`/books/`}>View { book.volumeInfo.title }</Link>
                 </Card.Text>
+                {/* { checkIfFavorited } */}
             </Card.Body>
         </Card>
     ))
