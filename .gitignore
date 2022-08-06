@@ -22,3 +22,31 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+
+
+
+ //             <Form.Label htmlFor="author">Author</Form.Label>
+    //             <Form.Control
+    //                 placeholder="Who is the author of this book?"
+    //                 name="author"
+    //                 id="author"
+    //                 value={ book.author }
+    //                 onChange={ handleChange }
+    //             />
+    //             <Form.Label htmlFor="description">Description</Form.Label>
+    //             <Form.Control
+    //                 placeholder="description?"
+    //                 type="text"
+    //                 name="description"
+    //                 id="description"
+    //                 value={ book.description }
+    //                 onChange={ handleChange }
+    //             />
+    //             <Form.Label htmlFor="uploadImage">Image</Form.Label>           
+    //                 <Form.Control 
+    //                     placeholder="Upload image"
+    //                     type="file" 
+    //                     id="uploadImage" 
+    //                     name="uploadImage"

@@ -14,6 +14,7 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import BooksIndex from './components/books/BooksIndex'
 import ShowBook from './components/books/ShowBook'
+import BookForm from './components/shared/BookForm'
 
 const App = () => {
 
@@ -83,11 +84,10 @@ const App = () => {
 							}
 						/>
 						<Route
-					path='/books'
-					element={
-						<RequireAuth user={user}>
-						<CreateBook msgAlert={msgAlert} user={user} />
-					</RequireAuth>}
+							path='/addBook'
+							element={
+								<BookForm msgAlert={msgAlert} user={user} />
+							}
 				/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
