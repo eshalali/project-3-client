@@ -76,3 +76,7 @@ const BooksIndex = (props) => {
 }
 
 export default BooksIndex
+
+
+// make asecond use effect with something like books.find()
+//then make a second card set like madeBooks or something to display the bboks we make in the same place 

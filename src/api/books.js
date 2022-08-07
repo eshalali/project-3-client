@@ -14,13 +14,13 @@ export const getOneBook = (id) => {
 
 // CREATE
 export const createBook = (user, newBook) => {
-    // console.log('createbook in api was hit')
+    console.log('createbook in api was hit')
     // in our createbook form, we're building an object
     // when we pass that object into the api createBook function,
     // it's going to look like the books in our database
     // we're going to refer to this as newBook
-    // console.log('this is user', user)
-    // console.log('this is newBook', newBook)
+    console.log('this is user', user)
+    console.log('this is newBook', newBook)
 	return axios({
 		url: apiUrl + '/books',
 		method: 'POST',

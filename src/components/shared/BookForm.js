@@ -5,7 +5,7 @@ import {
 } from 'react-bootstrap'
 
 const BookForm = (props) => {
-   
+
     const { book, handleChange, heading, handleSubmit } = props
 
     return (
@@ -14,10 +14,10 @@ const BookForm = (props) => {
             <Form onSubmit={handleSubmit}>
                 <Form.Label htmlFor="title">Title</Form.Label>
                 <Form.Control
-                    placeholder="What is your Books's title?"
+                    placeholder="What is this book's title?"
                     name="title"
                     id="title"
-                    value={ book }
+                    value={ book.title }
                     onChange={ handleChange }
                 />
                 <Form.Label htmlFor="author">Author</Form.Label>
@@ -25,16 +25,16 @@ const BookForm = (props) => {
                     placeholder="Who is the author of this book?"
                     name="author"
                     id="author"
-                    value={ book }
+                    value={ book.author }
                     onChange={ handleChange }
                 />
                 <Form.Label htmlFor="description">Description</Form.Label>
                 <Form.Control
-                    placeholder="description?"
+                    placeholder="Give a brief description of the book?"
                     type="text"
                     name="description"
                     id="description"
-                    value={ book }
+                    value={ book.description }
                     onChange={ handleChange }
                 />
                 <Form.Label htmlFor="uploadImage">Image</Form.Label>           
