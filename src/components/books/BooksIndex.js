@@ -55,23 +55,15 @@ const BooksIndex = (props) => {
         return <p>No books yet. Better add some.</p>
     }
 
-    // const addRemoveFavorite = (book) => {
-    //     let status = false
-	// 	// console.log(status)
-
-	// 	function constainsBook(obj, list) {
-	// 		for (let i = 0; i<list.length; i++) {
-	// 			if(list[i] === obj) {
-	// 				return status = true
-	// 			}
-	// 		}
-	// 		return false
-	// 	}
-    //     constainsBook(book, favorites)
-    //     console.log(status)
-    // }
-
-    
+    const addRemoveFavorite = (book, list) => {
+            for (let i = 0; i<list.length; i++) {
+                if(list[i].id === book.id) {
+                    console.log('working')
+                    return true
+                }
+            }
+            return false
+    }
 
     const bookCards = books.map(book => (
         <Card style={{ width: '30%', margin: 5}} key={ book.id }>
@@ -81,12 +73,16 @@ const BooksIndex = (props) => {
                 <Card.Text>
                     <Link to={`/books/`}>View { book.volumeInfo.title }</Link>
                 </Card.Text>
-                <div onClick={() => props.handleFavoriteClick(book)} className='controls'>
-                    <AddFavorite />
-                </div>
-                <div onClick={() => props.handleRemoveClick(book)} className='controls'>
-                    <RemoveFavorite /> 
-                </div>
+                { addRemoveFavorite(book, favorites)
+                    ?  
+                    <div onClick={() => props.handleRemoveClick(book)} className='controls'>
+                        <RemoveFavorite /> 
+                    </div>  
+                    :     
+                    <div onClick={() => props.handleFavoriteClick(book)} className='controls'>
+                        <AddFavorite />
+                    </div>        
+                }
             </Card.Body>
         </Card>
     ))

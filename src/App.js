@@ -44,15 +44,15 @@ const App = () => {
 		})
 	}
 
-	// useEffect(() => {
-	// 	const bookFavorites = JSON.parse(
-	// 		localStorage.getItem('book-favorites')
-	// 	);
+	useEffect(() => {
+		const bookFavorites = JSON.parse(
+			localStorage.getItem('book-favorites')
+		);
 
-	// 	if (bookFavorites) {
-	// 		setFavorites(bookFavorites);
-	// 	}
-	// }, []);
+		if (bookFavorites) {
+			setFavorites(bookFavorites);
+		}
+	}, []);
 
 	const saveToLocalStorage = (items) => {
 		localStorage.setItem('book-favorites', JSON.stringify(items));
@@ -61,24 +61,24 @@ const App = () => {
 	const handleFavoriteClick = (book) => {
 		const newFavoriteList = [...favorites, book];
 		// console.log(favorites)
-		let status = false
+		// let status = false
 		// console.log(status)
 
-		function constainsBook(obj, list) {
-			for (let i = 0; i<list.length; i++) {
-				if(list[i] === obj) {
-					return status = true
-				}
-			}
-			return
-		}
-		constainsBook(book, favorites)
+		// function constainsBook(obj, list) {
+		// 	for (let i = 0; i<list.length; i++) {
+		// 		if(list[i] === obj) {
+		// 			return status = true
+		// 		}
+		// 	}
+		// 	return
+		// }
+		// constainsBook(book, favorites)
 		// console.log(status)
-		if (!status) {
+		// if (!status) {
 			// console.log('working')
 			setFavorites(newFavoriteList);
 			saveToLocalStorage(newFavoriteList);
-		}
+		// }
 	};
 
 	const handleRemoveClick = (book) => {
