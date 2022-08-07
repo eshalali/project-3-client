@@ -23,6 +23,7 @@ const App = () => {
 
 	console.log('user in app', user)
 	console.log('message alerts', msgAlerts)
+	
 	const clearUser = () => {
 		console.log('clear user ran')
 		setUser(null)
@@ -59,8 +60,25 @@ const App = () => {
 	
 	const handleFavoriteClick = (book) => {
 		const newFavoriteList = [...favorites, book];
-		setFavorites(newFavoriteList);
-		saveToLocalStorage(newFavoriteList);
+		// console.log(favorites)
+		let status = false
+		// console.log(status)
+
+		function constainsBook(obj, list) {
+			for (let i = 0; i<list.length; i++) {
+				if(list[i] === obj) {
+					return status = true
+				}
+			}
+			return
+		}
+		constainsBook(book, favorites)
+		// console.log(status)
+		if (!status) {
+			// console.log('working')
+			setFavorites(newFavoriteList);
+			saveToLocalStorage(newFavoriteList);
+		}
 	};
 
 	const handleRemoveClick = (book) => {

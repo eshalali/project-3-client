@@ -10,7 +10,6 @@ import { getAllBooks } from '../../api/books'
 import messages from '../shared/AutoDismissAlert/messages'
 import AddFavorite from '../favorites/AddFavorite'
 import RemoveFavorite from '../favorites/RemoveFavorite'
-// import [favorites, setFavorites] from '../../app'
 
 
 // style for our card container
@@ -25,6 +24,7 @@ const BooksIndex = (props) => {
     const [error, setError] = useState(false)
     // const [img, setImg] = useState();
     const { msgAlert } = props
+    const { favorites } = props
 
     // console.log('Props in BooksIndex', props)
     //res.data.books should grab local books
@@ -55,22 +55,25 @@ const BooksIndex = (props) => {
         return <p>No books yet. Better add some.</p>
     }
 
-    // const checkIfFavorited = () => {
-    //     books.map(book => {
-    //         if (!favorites.book.id) {
-    //             return  <div onClick={() => props.handleFavoriteClick(book)} className='controls'>
-    //                         <AddFavorite />
-    //                     </div>;
-    //         } else {
-    //             return  <div onClick={() => props.handleRemoveClick(book)} className='controls'>
-    //                         <RemoveFavorite /> 
-    //                     </div>
-    //         }
-    //     })
+    // const addRemoveFavorite = (book) => {
+    //     let status = false
+	// 	// console.log(status)
+
+	// 	function constainsBook(obj, list) {
+	// 		for (let i = 0; i<list.length; i++) {
+	// 			if(list[i] === obj) {
+	// 				return status = true
+	// 			}
+	// 		}
+	// 		return false
+	// 	}
+    //     constainsBook(book, favorites)
+    //     console.log(status)
     // }
 
-    const bookCards = books.map(book => (
+    
 
+    const bookCards = books.map(book => (
         <Card style={{ width: '30%', margin: 5}} key={ book.id }>
             <Card.Header>{ book.volumeInfo.title }</Card.Header>
             <Card.Body>
@@ -78,7 +81,12 @@ const BooksIndex = (props) => {
                 <Card.Text>
                     <Link to={`/books/`}>View { book.volumeInfo.title }</Link>
                 </Card.Text>
-                {/* { checkIfFavorited } */}
+                <div onClick={() => props.handleFavoriteClick(book)} className='controls'>
+                    <AddFavorite />
+                </div>
+                <div onClick={() => props.handleRemoveClick(book)} className='controls'>
+                    <RemoveFavorite /> 
+                </div>
             </Card.Body>
         </Card>
     ))
