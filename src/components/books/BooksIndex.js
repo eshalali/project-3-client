@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom'
 import LoadingScreen from '../shared/LoadingScreen'
 import { getAllBooks, getOneBook } from '../../api/books'
 import messages from '../shared/AutoDismissAlert/messages'
+import AddFavorite from '../favorites/AddFavorite'
+import RemoveFavorite from '../favorites/RemoveFavorite'
 
 
 // style for our card container
@@ -22,6 +24,8 @@ const BooksIndex = (props) => {
     const [error, setError] = useState(false)
     // const [img, setImg] = useState();
     const { msgAlert } = props
+    const { favorites } = props
+    const { user } = props
 
     // console.log('Props in BooksIndex', props)
     //res.data.books should grab local books
@@ -52,8 +56,15 @@ const BooksIndex = (props) => {
         return <p>No books yet. Better add some.</p>
     }
 
-    
-    
+    const addRemoveFavorite = (book, list) => {
+            for (let i = 0; i<list.length; i++) {
+                if(list[i].id === book.id) {
+                    console.log('working')
+                    return true
+                }
+            }
+            return false
+    }
 
     const bookCards = books.map(book => (
         <Card style={{ width: '30%', margin: 5}} key={ book.id }>
@@ -63,6 +74,24 @@ const BooksIndex = (props) => {
                 <Card.Text>
                     <Link to={`/books/google/${book.id}`}>View: { book.volumeInfo.title }</Link>
                 </Card.Text>
+                <Card.Text>
+                    <a href={`${book.volumeInfo.previewLink}`} target="_blank" rel="noopener noreferrer">
+                        <img src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}></img>
+                    </a>
+                </Card.Text>
+                <Card.Text>
+                    <Link to={`/book/:id`}>View { book.volumeInfo.title }</Link>
+                </Card.Text>
+                { addRemoveFavorite(book, favorites)
+                    ?  
+                    <div onClick={() => props.handleRemoveClick(book)} className='controls'>
+                        <RemoveFavorite /> 
+                    </div>  
+                    :     
+                    <div onClick={() => props.handleFavoriteClick(book)} className='controls'>
+                        <AddFavorite />
+                    </div>        
+                }
             </Card.Body>
         </Card>
     ))
