@@ -7,7 +7,7 @@ export const getAllBooks = () => {
 }
 
 // READ => SHOW
-export const getOneBook = (id) => {
+export const getOneBook = async (id) => {
     return axios(`${apiUrl}/books/${id}`)
 }
 
