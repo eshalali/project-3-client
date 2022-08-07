@@ -6,7 +6,7 @@ export const createComment = (user, bookId, newComment) => {
     console.log('the user in createComment', user)
     console.log('the newComment in createComment', newComment)
 	return axios({
-		url: `${apiUrl}/comments/${bookId}`,
+		url: `${apiUrl}/comments/google/${bookId}`,
 		method: 'POST',
 		data: { comment: newComment }
 	})
@@ -26,7 +26,7 @@ export const updateComment = (user, bookId, updatedComment) => {
 }
 
 // DELETE comment
-export const deleteComment = (user, commentId, commentId) => {
+export const deleteComment = (user, bookId, comment) => {
 	return axios({
 		url: `${apiUrl}/comments/${commentId}/${commentId}`,
 		method: 'DELETE',
@@ -34,4 +34,4 @@ export const deleteComment = (user, commentId, commentId) => {
 			Authorization: `Token token=${user.token}`,
 		}
 	})
-}
+	}

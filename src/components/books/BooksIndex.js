@@ -22,7 +22,7 @@ const BooksIndex = (props) => {
     const [error, setError] = useState(false)
     // const [img, setImg] = useState();
     const { msgAlert } = props
-
+    
     // console.log('Props in BooksIndex', props)
     //res.data.books should grab local books
     useEffect(() => {

@@ -26,7 +26,7 @@ const NewCommentModal = (props) => {
         // e equals the event
         e.preventDefault()
 
-        createComment(user, book._id, comment)
+        createComment(user, book.id, comment)
             // if we're successful in the modal, we want the modal to close
             .then(() => handleClose())
             // send a success message to the user

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import EditCommentModal from './EditCommentModal'
-import { deleteComment } from '../../api/comments'
+// import { deleteComment } from '../../api/comments'
 
 const ShowComment = (props) => {
     // destructure some props
@@ -10,20 +10,23 @@ const ShowComment = (props) => {
     const [editModalShow, setEditModalShow] = useState(false)
 
     const removeComment = () => {
-        deleteComment(user, book._id, comment._id)
-            .then(() => 
+        for (let i = 0; i < book.data.comments; i++) {
+            if (book.data.comments[i] === comment) {
+                book.data.comments.splice(i,1)
                 msgAlert({
                     heading:'Deleted',
                     message: 'Comment has been deleted',
                     variant: 'success'
-                }))
-            .then(() => triggerRefresh())
-            .catch(() => 
-                msgAlert({
-                    heading:'Oh no',
-                    message: 'Couldnt delete comment',
-                    variant: 'danger'
-                }))
+                })
+                triggerRefresh()
+            } else {
+            msgAlert({
+                heading:'Unsuccessful',
+                message: 'Couldnt delete comment',
+                variant: 'danger'
+            })
+        }
+    }
     }
     return (
         <>
@@ -38,7 +41,7 @@ const ShowComment = (props) => {
                         ?
                         <>
                             <Button variant='warning' onClick={() => setEditModalShow(true)}>Edit Comment</Button>
-                            <Button variant='danger' onClick={() => destroyComment()}>Delete Commment</Button>
+                            <Button variant='danger' onClick={() => removeComment()}>Delete Commment</Button>
                         </>
                         :
                         null

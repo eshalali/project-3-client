@@ -80,8 +80,8 @@ const ShowBook = (props) => {
     }
     let commentCards
     if (book) {
-        if (book.comments.length > 0) {
-            commentCards = book.comments.map(comment => (
+        if (book.data.comments.length > 0) {
+            commentCards = book.data.comments.map(comment => (
                 <ShowComment  
                     key={comment._id}
                     comment={comment}

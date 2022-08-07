@@ -30,19 +30,10 @@ const authenticatedOptions = (
 const unauthenticatedOptions = (
 	<>
         <Nav.Item className='m-2'>
-<<<<<<< HEAD
-		    <Link to='sign-up' style={linkStyle}>Sign Up</Link>
-        </Nav.Item>
-        <Nav.Item className='m-2'>
-		    <Link to='sign-in' style={linkStyle}>Sign In</Link>
-=======
-{/* <<<<<<< HEAD */}
 		<Link to='sign-up' style={linkStyle}>Sign Up</Link>
 			</Nav.Item>
 			<Nav.Item className='m-2'>
 		<Link to='sign-in' style={linkStyle}>Sign In</Link>
-{/* >>>>>>> apimodels */}
->>>>>>> bookComponents2
         </Nav.Item>
 	</>
 )
