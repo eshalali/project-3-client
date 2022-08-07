@@ -25,6 +25,7 @@ const BooksIndex = (props) => {
     // const [img, setImg] = useState();
     const { msgAlert } = props
     const { favorites } = props
+    const { user } = props
 
     // console.log('Props in BooksIndex', props)
     //res.data.books should grab local books
@@ -71,7 +72,7 @@ const BooksIndex = (props) => {
             <Card.Body>
                 <img src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}></img>
                 <Card.Text>
-                    <Link to={`/books/`}>View { book.volumeInfo.title }</Link>
+                    <a href={`${book.volumeInfo.previewLink}`} target="_blank" rel="noopener noreferrer">View { book.volumeInfo.title }</a>
                 </Card.Text>
                 { addRemoveFavorite(book, favorites)
                     ?  

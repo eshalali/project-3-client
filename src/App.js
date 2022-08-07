@@ -14,11 +14,14 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import BooksIndex from './components/books/BooksIndex'
 import ShowBook from './components/books/ShowBook'
+import FavoritesIndex from './components/favorites/FavoritesIndex'
+// import { getAllBooks } from './api/books'
 
 const App = () => {
 
 	const [user, setUser] = useState(null)
 	const [favorites, setFavorites] = useState([])
+	// const [books, setBooks] = useState([])
 	const [msgAlerts, setMsgAlerts] = useState([])
 
 	console.log('user in app', user)
@@ -61,33 +64,35 @@ const App = () => {
 	const handleFavoriteClick = (book) => {
 		const newFavoriteList = [...favorites, book];
 		// console.log(favorites)
-		// let status = false
+		let status = false
 		// console.log(status)
 
-		// function constainsBook(obj, list) {
-		// 	for (let i = 0; i<list.length; i++) {
-		// 		if(list[i] === obj) {
-		// 			return status = true
-		// 		}
-		// 	}
-		// 	return
-		// }
-		// constainsBook(book, favorites)
+		function constainsBook(obj, list) {
+			for (let i = 0; i<list.length; i++) {
+				if(list[i].id === obj.id) {
+					return status = true
+				}
+			}
+			return
+		}
+		constainsBook(book, favorites)
 		// console.log(status)
-		// if (!status) {
+		if (!status && user) {
 			// console.log('working')
 			setFavorites(newFavoriteList);
 			saveToLocalStorage(newFavoriteList);
-		// }
+		}
 	};
 
 	const handleRemoveClick = (book) => {
 		const updateFavoriteList = favorites.filter(
 			(favorite) => favorite.id !== book.id
 		);
-
-		setFavorites(updateFavoriteList);
-		saveToLocalStorage(updateFavoriteList);
+		
+		if (user) {
+			setFavorites(updateFavoriteList);
+			saveToLocalStorage(updateFavoriteList);
+		}
 	};
 
 		return (
@@ -132,6 +137,15 @@ const App = () => {
 						path='/books/google/:id'
 						element={
 							<ShowBook msgAlert={msgAlert} clearUser={clearUser} user={user} />							
+						}
+					/>
+					<Route
+						path='/favorites'
+						element={
+							<FavoritesIndex 
+							msgAlert={msgAlert} clearUser={clearUser} user={user} 
+							handleFavoriteClick={handleFavoriteClick} favorites={ favorites } 
+							handleRemoveClick={handleRemoveClick}/>							
 						}
 					/>
 				</Routes>
