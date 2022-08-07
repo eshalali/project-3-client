@@ -17,7 +17,7 @@ const authenticatedOptions = (
 		</Nav.Item>
 		<Nav.Item className='m-2'>
 			<Link to="/favorites" style={ linkStyle }>
-				My Favorite Books
+				Favorite Books
 			</Link>
 		</Nav.Item>
 		<Nav.Item className='m-2'>
