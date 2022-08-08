@@ -150,7 +150,7 @@ const ShowBook = (props) => {
                 }
     
             </Container>
-            {/* <EditBookModal 
+            <EditBookModal 
                 user={user}
                 book={book} 
                 show={editModalShow} 
@@ -158,7 +158,7 @@ const ShowBook = (props) => {
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setEditModalShow(false)} 
-            /> */}
+            />
             <NewCommentModal 
                 book={book}
                 show={commentModalShow}

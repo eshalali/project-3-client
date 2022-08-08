@@ -20,18 +20,6 @@ const EditBookModal = (props) => {
 
             console.log('this is the input type', e.target.type)
 
-            if (e.target.type === 'number') {
-                // this is looking at the input type, and changing it from the default, which is a string, into an actual number
-                updatedValue = parseInt(e.target.value)
-            }
-
-            // this handles the checkbox, changing on to true etc
-            if (updatedName === "adoptable" && e.target.checked) {
-                updatedValue = true
-            } else if (updatedName === "adoptable" && !e.target.checked) {
-                updatedValue = false
-            }
-
             const updatedBook = {
                 [updatedName]: updatedValue
             }

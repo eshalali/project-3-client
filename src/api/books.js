@@ -41,7 +41,7 @@ export const updateBook = (user, updatedBook) => {
     // console.log('this is user', user)
     console.log('this is updatedBook', updatedBook)
 	return axios({
-		url: `${apiUrl}/books/${updatedBook.id}`,
+		url: `${apiUrl}/books/${updatedBook._id}`,
 		method: 'PATCH',
 		headers: {
 			Authorization: `Token token=${user.token}`,
