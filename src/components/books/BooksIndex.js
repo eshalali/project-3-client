@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 
 import LoadingScreen from '../shared/LoadingScreen'
-import { getAllBooks, getOneBook } from '../../api/books'
+import { getAllBooks,  } from '../../api/books'
 import messages from '../shared/AutoDismissAlert/messages'
 
 
@@ -23,7 +23,7 @@ const BooksIndex = (props) => {
     // const [img, setImg] = useState();
     const { msgAlert } = props
 
-    // console.log('Props in BooksIndex', props)
+    console.log('Props in BooksIndex', props)
     //res.data.books should grab local books
     useEffect(() => {
         console.log(props)
@@ -41,6 +41,9 @@ const BooksIndex = (props) => {
 
     }, [])
 
+
+
+                
     if (error) {
         return <p>Error!</p>
     }
@@ -68,6 +71,7 @@ const BooksIndex = (props) => {
     ))
 
 
+
     return (
         <div style={ cardContainerStyle }>
             {  bookCards }
@@ -79,4 +83,4 @@ export default BooksIndex
 
 
 // make asecond use effect with something like books.find()
-//then make a second card set like madeBooks or something to display the bboks we make in the same place 
+//then make a second card set like madeBooks or something to display the boks we make in the same place 
