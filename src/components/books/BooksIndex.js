@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 
 import LoadingScreen from '../shared/LoadingScreen'
-import { getAllBooks, getOneBook } from '../../api/books'
+import { getAllBooks } from '../../api/books'
 import messages from '../shared/AutoDismissAlert/messages'
 import AddFavorite from '../favorites/AddFavorite'
 import RemoveFavorite from '../favorites/RemoveFavorite'
@@ -23,14 +23,14 @@ const BooksIndex = (props) => {
     const [books, setBooks] = useState(null)
     const [error, setError] = useState(false)
     // const [img, setImg] = useState();
-    const { msgAlert } = props
     const { favorites } = props
-    const { user } = props
-
+    // const { user } = props
+    
     // console.log('Props in BooksIndex', props)
     //res.data.books should grab local books
     useEffect(() => {
-        console.log(props)
+        // console.log(props)
+        const { msgAlert } = props
         getAllBooks()
             
         .then(res => setBooks(res.data.data))
@@ -74,14 +74,14 @@ const BooksIndex = (props) => {
                 <Card.Text>
                     <Link to={`/books/google/${book.id}`}>View: { book.volumeInfo.title }</Link>
                 </Card.Text>
-                <Card.Text>
+                {/* <Card.Text>
                     <a href={`${book.volumeInfo.previewLink}`} target="_blank" rel="noopener noreferrer">
                         <img src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}></img>
                     </a>
-                </Card.Text>
-                <Card.Text>
+                </Card.Text> */}
+                {/* <Card.Text>
                     <Link to={`/book/:id`}>View { book.volumeInfo.title }</Link>
-                </Card.Text>
+                </Card.Text> */}
                 { addRemoveFavorite(book, favorites)
                     ?  
                     <div onClick={() => props.handleRemoveClick(book)} className='controls'>

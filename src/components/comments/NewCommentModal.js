@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Modal } from 'react-bootstrap'
 import CommentForm from '../shared/CommentForm'
 import { createComment } from '../../api/comments'
@@ -25,6 +25,11 @@ const NewCommentModal = (props) => {
     const handleSubmit = (e) => {
         // e equals the event
         e.preventDefault()
+        // const newComment = comment
+        // newComment.owner.id = user.id
+        // book.comments = []
+        // book.comments.push(newComment)
+        // return book.save()
 
         createComment(user, book._id, comment)
             // if we're successful in the modal, we want the modal to close

@@ -9,7 +9,7 @@ const ShowComment = (props) => {
     const { comment, book, user, triggerRefresh, msgAlert } = props
     // here's where we'll put a hook to open the edit toy modal when we get there
     const [editModalShow, setEditModalShow] = useState(false)
-
+    // book.comments = []
     const removeComment = () => {
         deleteComment(user, book._id, comment._id)
             .then(() => 
@@ -21,7 +21,7 @@ const ShowComment = (props) => {
             .then(() => triggerRefresh())
             .catch(() => 
                 msgAlert({
-                    heading:'Oh no',
+                    heading:'Unsuccessful',
                     message: 'Couldnt delete comment',
                     variant: 'danger'
                 }))
@@ -29,7 +29,7 @@ const ShowComment = (props) => {
     return (
         <>
             <Card className='m-2' style='width: 18rem'>
-                <Card.Header>{comment.owner}</Card.Header>
+                <Card.Header>{comment.email}</Card.Header>
                 <Card.Body>
                     <p>{comment.note}</p>
                 </Card.Body>
@@ -39,7 +39,7 @@ const ShowComment = (props) => {
                         ?
                         <>
                             <Button variant='warning' onClick={() => setEditModalShow(true)}>Edit Comment</Button>
-                            <Button variant='danger' onClick={() => deleteComment()}>Delete Commment</Button>
+                            <Button variant='danger' onClick={() => deleteComment(comment)}>Delete Commment</Button>
                         </>
                         :
                         null

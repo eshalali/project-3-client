@@ -80,21 +80,52 @@ const ShowBook = (props) => {
                 })
             })
     }
-    // let commentCards
-    // if (book) {
-    //     if (book.comments.length > 0) {
-    //         commentCards = book.comments.map(comment => (
-    //             <ShowComment  
-    //                 key={comment._id}
-    //                 comment={comment}
-    //                 book={book}
-    //                 user={user}
-    //                 msgAlert={msgAlert}
-    //                 triggerRefresh={() => setUpdated(prev => !prev)}
-    //             />
-    //         ))
-    //     }
-    // }
+    const deleteComment = (comment) => {
+        for (let i = 0; i < book.comments.length; i++) {
+            if (book.comments[i] === comment) {
+                book.comments.splice(i,1)
+            }
+        }
+        setUpdated(prev => !prev)
+    }
+
+
+    let commentCards
+    if (book) {
+        if (book.comments) {
+            commentCards = book.comments.map(comment => (
+                // <ShowComment  
+                //     // key={comment._id}
+                //     comment={comment}
+                //     book={book}
+                //     user={user}
+                //     msgAlert={msgAlert}
+                //     triggerRefresh={() => setUpdated(prev => !prev)}
+                // />
+                <>
+                <Card className='m-2'>
+                {/* <Card.Header>{comment.owner}</Card.Header> */}
+                <Card.Body>
+                    <p>{comment.note}</p>
+                </Card.Body>
+                <Card.Footer>
+                    {
+                        user && user.id === comment.owner
+                        ?
+                        <>
+                            <Button variant='warning' onClick={() => setEditModalShow(true)}>Edit Comment</Button>
+                            <Button variant='danger' onClick={() => deleteComment()}>Delete Commment</Button>
+                        </>
+                        :
+                        null
+                    }
+                </Card.Footer>
+            </Card>
+                </>
+                // <p>{comment.note}</p>
+            ))
+        }
+    }
 
     if (!book) {
         return <LoadingScreen />
@@ -113,11 +144,17 @@ const ShowBook = (props) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button onClick={() => setCommentModalShow(true)}
-                            className="m-2" variant="info"
-                        >
-                            Give {book.name} a comment!
-                        </Button>
+                        {
+                            user
+                            ?
+                            <Button onClick={() => setCommentModalShow(true)}
+                                className="m-2" variant="info"
+                            >
+                                Give {book.name} a comment!
+                            </Button>
+                            :
+                            null
+                        }
                         {
                             book.owner && user && book.owner._id === user._id 
                             ?
@@ -141,7 +178,7 @@ const ShowBook = (props) => {
                     </Card.Footer>
                 </Card>
             </Container>
-            {/* <Container style={cardContainerLayout}>
+            <Container style={cardContainerLayout}>
                 {commentCards}
             </Container>
             <EditBookModal 
@@ -160,7 +197,7 @@ const ShowBook = (props) => {
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setCommentModalShow(false)} 
-            /> */}
+            />
         </>
     )
 }
