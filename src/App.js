@@ -16,9 +16,6 @@ import BooksIndex from './components/books/BooksIndex'
 import ShowBook from './components/books/ShowBook'
 import CreateBook from './components/books/CreateBook'
 import FavoritesIndex from './components/favorites/FavoritesIndex'
-import ShowComment from './components/comments/ShowComment'
-import EditCommentModal from './components/comments/EditCommentModal'
-import NewCommentModal from './components/comments/NewCommentModal'
 // import { getAllBooks } from './api/books'
 
 const App = () => {

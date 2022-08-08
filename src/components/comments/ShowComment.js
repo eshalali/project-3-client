@@ -8,7 +8,7 @@ const ShowComment = (props) => {
     // destructure some props
     const { comment, book, user, triggerRefresh, msgAlert } = props
     // here's where we'll put a hook to open the edit toy modal when we get there
-    const [editModalShow, setEditModalShow] = useState(false)
+    // const [editModalShow, setEditModalShow] = useState(false)
     // book.comments = []
     const removeComment = () => {
         deleteComment(user, book._id, comment._id)
@@ -38,15 +38,15 @@ const ShowComment = (props) => {
                         user && user._id === comment.owner._id 
                         ?
                         <>
-                            <Button variant='warning' onClick={() => setEditModalShow(true)}>Edit Comment</Button>
-                            <Button variant='danger' onClick={() => deleteComment(comment)}>Delete Commment</Button>
+                            {/* <Button variant='warning' onClick={() => setEditModalShow(true)}>Edit Comment</Button> */}
+                            <Button variant='danger' onClick={() => removeComment()}>Delete Commment</Button>
                         </>
                         :
                         null
                     }
                 </Card.Footer>
             </Card>
-            <EditCommentModal 
+            {/* <EditCommentModal 
                 user={user}
                 book={book}
                 comment={comment}
@@ -54,7 +54,7 @@ const ShowComment = (props) => {
                 handleClose= {() => setEditModalShow(false)}
                 msgAlert={msgAlert}
                 triggerRefresh={triggerRefresh}
-            />
+            /> */}
         </>
     )
 

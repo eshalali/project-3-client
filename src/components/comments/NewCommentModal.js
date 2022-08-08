@@ -25,12 +25,8 @@ const NewCommentModal = (props) => {
     const handleSubmit = (e) => {
         // e equals the event
         e.preventDefault()
-        // const newComment = comment
-        // newComment.owner.id = user.id
-        // book.comments = []
-        // book.comments.push(newComment)
-        // return book.save()
-
+        console.log('+++++++', user)
+        // console.log(book._id.toObject())
         createComment(user, book._id, comment)
             // if we're successful in the modal, we want the modal to close
             .then(() => handleClose())
@@ -44,7 +40,7 @@ const NewCommentModal = (props) => {
             })
             .then(() => triggerRefresh())
             // if there is an error, tell the user about it
-            .catch(() => 
+            .catch(() =>
                 msgAlert({
                     heading: 'Oh No!',
                     message: 'Something went wrong, try again',

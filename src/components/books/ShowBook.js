@@ -12,7 +12,7 @@ import messages from '../shared/AutoDismissAlert/messages'
 import EditBookModal from './EditBookModal'
 import NewCommentModal from '../comments/NewCommentModal'
 import ShowComment from '../comments/ShowComment'
-// import deleteComment from '../../api/comments'
+import deleteComment from '../../api/comments'
 
 // We need to get the book's id from the parameters
 // Then we need to make a request to the api
@@ -45,7 +45,7 @@ const ShowBook = (props) => {
         getOneBook(id)
         // .then(res => console.log(res.data))
 
-            .then(res => setBook(res.data))
+            .then(res => setBook(res.data.book))
             .catch(err => {                   
                 msgAlert({
                     heading: 'Error getting book',
@@ -63,6 +63,9 @@ const ShowBook = (props) => {
         removeBook(user, book._id)
             // on success send a success message
             .then(() => {
+                console.log('this is the user\n', user)
+                console.log('this is the bookId\n', book._id)
+
                 msgAlert({
                     heading: 'Success',
                     message: messages.removeBookSuccess,
@@ -70,7 +73,7 @@ const ShowBook = (props) => {
                 })
             })
             // then navigate to index
-            .then(() => {navigate('/')})
+            .then(() => {navigate('/books')})
             // on failure send a failure message
             .catch(err => {                   
                 msgAlert({
@@ -80,21 +83,23 @@ const ShowBook = (props) => {
                 })
             })
     }
-    // let commentCards
-    // if (book) {
-    //     if (book.comments.length) {
-    //         commentCards = book.comments.map(comment => (
-    //             <ShowComment  
-    //                 key={comment._id}
-    //                 comment={comment}
-    //                 book={book}
-    //                 user={user}
-    //                 msgAlert={msgAlert}
-    //                 triggerRefresh={() => setUpdated(prev => !prev)}
-    //             />
-    //         ))
-    //     }
-    // }
+    let commentCards 
+    if (book) {
+        if (book.comments.length > 0) {
+            commentCards = book.comments.map((comment) => {
+                console.log('this is our comment in our book from map', comment)
+                return <ShowComment  
+                    key={comment._id}
+                    comment={comment}
+                    book={book}
+                    user={user}
+                    msgAlert={msgAlert}
+                    // triggerRefresh={() => setUpdated}
+                />
+            }   
+            )
+        }
+    }
 
     if (!book) {
         return <LoadingScreen />
@@ -105,11 +110,11 @@ const ShowBook = (props) => {
             <Container className="fluid">
                 <Card>
                     <Card.Header>{ book.title }</Card.Header>
+                    <img src={`${book.imageLink}`}/>
                     <Card.Body>
-                        <Card.Text>
-                            <div><small>Author: { book.author }</small></div>
-                            <div>description: { book.description }</div> 
-                        </Card.Text>
+                            <div>Author: { book.author }</div>
+                            <div>description: { book.description }</div>
+                        
                     </Card.Body>
                     <Card.Footer>
                         <Button onClick={() => setCommentModalShow(true)}
@@ -131,7 +136,7 @@ const ShowBook = (props) => {
                                     className="m-2"
                                     variant="danger"
                                 >
-                                    Set {book.name} Free
+                                    delete Book
                                 </Button>
                             </>
                             :
@@ -140,10 +145,10 @@ const ShowBook = (props) => {
                     </Card.Footer>
                 </Card>
             </Container>
-            <Container style={cardContainerLayout}>
+            <Container>
                 {commentCards}
             </Container>
-            <EditBookModal 
+            {/* <EditBookModal 
                 user={user}
                 book={book} 
                 show={editModalShow} 
@@ -151,7 +156,7 @@ const ShowBook = (props) => {
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setEditModalShow(false)} 
-            />
+            /> */}
             <NewCommentModal 
                 book={book}
                 show={commentModalShow}
@@ -159,7 +164,7 @@ const ShowBook = (props) => {
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 handleClose={() => setCommentModalShow(false)} 
-            />
+            /> 
         </>
     )
 }

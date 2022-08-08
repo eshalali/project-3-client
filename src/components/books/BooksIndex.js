@@ -24,6 +24,7 @@ const BooksIndex = (props) => {
     const [error, setError] = useState(false)
     // const [img, setImg] = useState();
     const { favorites } = props
+    const { msgAlert } = props
     // const { user } = props
     
     // console.log('Props in BooksIndex', props)
