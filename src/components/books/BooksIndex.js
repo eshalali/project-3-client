@@ -29,11 +29,10 @@ const BooksIndex = (props) => {
     // console.log('Props in BooksIndex', props)
     //res.data.books should grab local books
     useEffect(() => {
-        // console.log(props)
-        const { msgAlert } = props
+        console.log(props)
+        
         getAllBooks()
-            
-        .then(res => setBooks(res.data.data))
+        .then(res => setBooks(res.data.books))
         .catch(err => {
             msgAlert({
                 heading: 'Error Getting Books',
@@ -58,7 +57,7 @@ const BooksIndex = (props) => {
 
     const addRemoveFavorite = (book, list) => {
             for (let i = 0; i<list.length; i++) {
-                if(list[i].id === book.id) {
+                if(list[i]._id === book._id) {
                     console.log('working')
                     return true
                 }
@@ -67,21 +66,11 @@ const BooksIndex = (props) => {
     }
 
     const bookCards = books.map(book => (
-        <Card style={{ width: '30%', margin: 5}} key={ book.id }>
-            <Card.Header>{ book.volumeInfo.title }</Card.Header>
+        <Card style={{ width: '30%', margin: 5}} key={ book._id }>
+            <Card.Header><Link to={`/books/${book._id}`}>View: { book.title }</Link></Card.Header>
             <Card.Body>
-            <img src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}></img>
-                <Card.Text>
-                    <Link to={`/books/google/${book.id}`}>View: { book.volumeInfo.title }</Link>
-                </Card.Text>
-                {/* <Card.Text>
-                    <a href={`${book.volumeInfo.previewLink}`} target="_blank" rel="noopener noreferrer">
-                        <img src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}></img>
-                    </a>
-                </Card.Text> */}
-                {/* <Card.Text>
-                    <Link to={`/book/:id`}>View { book.volumeInfo.title }</Link>
-                </Card.Text> */}
+                <img src={`${book.imageLink}`}/> 
+        
                 { addRemoveFavorite(book, favorites)
                     ?  
                     <div onClick={() => props.handleRemoveClick(book)} className='controls'>
