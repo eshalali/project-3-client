@@ -26,9 +26,9 @@ export const updateComment = (user, bookId, updatedComment) => {
 }
 
 // DELETE comment
-export const deleteComment = (user, bookId, commentId) => {
+export const deleteComment = (user, commentId) => {
 	return axios({
-		url: `${apiUrl}/comments/${bookId}/${commentId}`,
+		url: `${apiUrl}/comments/${commentId}`,
 		method: 'DELETE',
 		headers: {
 			Authorization: `Token token=${user.token}`,
