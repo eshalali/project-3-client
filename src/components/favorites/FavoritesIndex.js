@@ -25,6 +25,8 @@ const FavoritesIndex = (props) => {
         return false
     }
 
+    
+
     const favoriteBooks = favorites.map(book => (
         <Card style={{ width: '30%', margin: 5}} key={ book.id }>
             <Card.Header>{ book.volumeInfo.title }</Card.Header>

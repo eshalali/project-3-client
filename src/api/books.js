@@ -5,10 +5,10 @@ import axios from 'axios'
 export const getAllBooks = () => {
     return axios(`${apiUrl}/books`)
 }
-// // READ => INDEX
-// export const getLocalBooks = () => {
-//     return axios(`${apiUrl}/books`)
-// }
+// READ => INDEX
+export const getLocalBooks = () => {
+    return axios(`${apiUrl}/books`)
+}
 
 
 // READ => SHOW
