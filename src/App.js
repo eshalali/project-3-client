@@ -70,7 +70,7 @@ const App = () => {
 
 		function constainsBook(obj, list) {
 			for (let i = 0; i<list.length; i++) {
-				if(list[i].id === obj.id) {
+				if(list[i]._id === obj._id) {
 					return status = true
 				}
 			}
@@ -87,7 +87,7 @@ const App = () => {
 
 	const handleRemoveClick = (book) => {
 		const updateFavoriteList = favorites.filter(
-			(favorite) => favorite.id !== book.id
+			(favorite) => favorite._id !== book._id
 		);
 		
 		if (user) {
@@ -135,7 +135,7 @@ const App = () => {
 						}
 					/>
 					<Route
-						path='/books/google/:id'
+						path='/books/:id'
 						element={
 							<ShowBook msgAlert={msgAlert} clearUser={clearUser} user={user} />							
 						}

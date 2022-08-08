@@ -60,7 +60,7 @@ const ShowBook = (props) => {
     // here we'll declare a function that runs which will remove the book
     // this function's promise chain should send a message, and then go somewhere
     const removeTheBook = () => {
-        removeBook(user, book.id)
+        removeBook(user, book._id)
             // on success send a success message
             .then(() => {
                 msgAlert({
@@ -82,7 +82,7 @@ const ShowBook = (props) => {
     }
     // let commentCards
     // if (book) {
-    //     if (book.comments.length > 0) {
+    //     if (book.comments.length) {
     //         commentCards = book.comments.map(comment => (
     //             <ShowComment  
     //                 key={comment._id}
@@ -107,16 +107,15 @@ const ShowBook = (props) => {
                     <Card.Header>{ book.title }</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <div> <img src={`http://books.google.com/books/publisher/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE72ogXuGL62ZnSbde4lgieUnyxbElGZLOwZKOM2utf5zw4JOHJPmelLVnvOg004ICmoMm2nyyyUb6iQN-2rC2RmKZGbiphdK0M8Py3yCsUBkMYlVfDgEmwp4bm-oMVex9TNIKEVP&source=gbs_api`}></img></div>
-                            <div><small>Author: { book.volumeInfo.authors }</small></div>
-                            <div>description: { book.volumeInfo.description }</div> 
+                            <div><small>Author: { book.author }</small></div>
+                            <div>description: { book.description }</div> 
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
                         <Button onClick={() => setCommentModalShow(true)}
                             className="m-2" variant="info"
                         >
-                            Give {book.name} a comment!
+                            Add a comment!
                         </Button>
                         {
                             book.owner && user && book.owner._id === user._id 
