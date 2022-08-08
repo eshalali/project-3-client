@@ -83,8 +83,21 @@ const ShowBook = (props) => {
                 })
             })
     }
-    // let commentCards 
-    
+    let commentCards
+    if (book) {
+        if (book.comments.length > 0) {
+            commentCards = book.comments.map(comment => (
+                <ShowComment 
+                    key={comment._id}
+                    comment={comment}
+                    book={book}
+                    user={user}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+            ))
+        }
+    }
 
     if (!book) {
         return <LoadingScreen />
@@ -131,24 +144,24 @@ const ShowBook = (props) => {
                 </Card>
             </Container>
             <Container>
-                { 
+                {/* { 
                 book.comments.length > 0 
                 ?
-                    book.comments.forEach((comment) => {
-                    console.log('this is our comment in our book from map', comment)
-                    return <ShowComment  
+                    commentCards = book.comments.forEach((comment) => {
+                    // console.log('this is our comment in our book from map', comment)
+                    <ShowComment  
                         key={comment._id}
                         comment={comment}
                         book={book}
                         user={user}
                         msgAlert={msgAlert}
-                        // triggerRefresh={() => setUpdated}
+                        triggerRefresh={() => setUpdated}
                         />
                     })   
                     :
                     null
-                }
-    
+                } */}
+                {commentCards}
             </Container>
             <EditBookModal 
                 user={user}

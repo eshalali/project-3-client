@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Modal } from 'react-bootstrap'
 import CommentForm from '../shared/CommentForm'
 import { createComment } from '../../api/comments'
+import { Form, Button, Container } from 'react-bootstrap'
 
 const NewCommentModal = (props) => {
     const { user, book, show, handleClose, msgAlert, triggerRefresh } = props
@@ -25,7 +26,7 @@ const NewCommentModal = (props) => {
     const handleSubmit = (e) => {
         // e equals the event
         e.preventDefault()
-        console.log('+++++++', user)
+        // console.log('+++++++', user)
         // console.log(book._id.toObject())
         createComment(user, book._id, comment)
             // if we're successful in the modal, we want the modal to close
@@ -53,12 +54,23 @@ const NewCommentModal = (props) => {
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton />
             <Modal.Body>
-                <CommentForm 
+                {/* <CommentForm 
                     comment={comment}
                     handleChange={handleChange}
                     handleSubmit={handleSubmit}
                     heading="Write a comment"
+                /> */}
+                <h3>Write a comment</h3>
+                <Form onSubmit={handleSubmit}>
+                <Form.Label htmlFor="note">Comment</Form.Label>
+                <Form.Control
+                    placeholder="Comment"
+                    name="note"
+                    id="note"
+                    onChange={ handleChange }
                 />
+                <Button type="submit">Submit</Button>
+            </Form>
             </Modal.Body>
         </Modal>
     )
