@@ -5,12 +5,16 @@ import axios from 'axios'
 export const getAllBooks = () => {
     return axios(`${apiUrl}/books`)
 }
+// // READ => INDEX
+// export const getLocalBooks = () => {
+//     return axios(`${apiUrl}/books`)
+// }
 
 
 // READ => SHOW
 export const getOneBook = (id) => {
     console.log("here is the ID", id)
-    return axios(`${apiUrl}/books/google/${id}`)
+    return axios(`${apiUrl}/books/local/${id}`)
 }
 
 // CREATE

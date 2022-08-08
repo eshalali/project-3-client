@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 
 import LoadingScreen from '../shared/LoadingScreen'
-import { getAllBooks,  } from '../../api/books'
+import { getAllBooks, getLocalBooks } from '../../api/books'
 import messages from '../shared/AutoDismissAlert/messages'
 
 
@@ -27,9 +27,9 @@ const BooksIndex = (props) => {
     //res.data.books should grab local books
     useEffect(() => {
         console.log(props)
-        getAllBooks()
-            
-        .then(res => setBooks(res.data.data))
+        getAllBooks()    
+        // getLocalBooks()    
+        .then(res => setBooks(res.data.books))
         .catch(err => {
             msgAlert({
                 heading: 'Error Getting Books',
@@ -40,6 +40,32 @@ const BooksIndex = (props) => {
         })
 
     }, [])
+
+    //                 async function getDb() {
+    //                     let books = {}
+    //                     let localBooks = null 
+    //                     let apiBooks = null
+    //                     localBooks = await getLocalBooks()
+    //                     apiBooks = await getAllBooks()
+    //                     console.log(localBooks.data.books)
+    //                     console.log(apiBooks.data.data)
+    //                     if (apiBooks.length) {
+    //                         apiBooks.map((book) =>{
+    //                         books.title = book.data.volumeInfo.title
+    //                         books.authour = book.data.volumeInfo.authour
+    //                         books.description = book.data.volumeInfo.description
+    //                     })   
+    //                     }
+                        
+    //                     console.log('here are the books', books)
+    //                 }
+    // //attempting to get local api to show with google api
+    //             useEffect(function() { 
+    //                 getDb()
+                    
+                    
+                
+    //             }, [])
 
 
 
@@ -60,15 +86,27 @@ const BooksIndex = (props) => {
 
     const bookCards = books.map(book => (
         <Card style={{ width: '30%', margin: 5}} key={ book.id }>
-            <Card.Header>{ book.volumeInfo.title }</Card.Header>
+            <Card.Header>{ book.title }</Card.Header>
             <Card.Body>
             <img src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}></img>
                 <Card.Text>
-                    <Link to={`/books/google/${book.id}`}>View: { book.volumeInfo.title }</Link>
+                    <Link to={`/books/local/${book.id}`}>View: { book.title }</Link>
                 </Card.Text>
             </Card.Body>
         </Card>
     ))
+
+    // const localBookCards = books.map(book => (
+    //     <Card style={{ width: '30%', margin: 5}} key={ book.id }>
+    //         <Card.Header>{ book.volumeInfo.title }</Card.Header>
+    //         <Card.Body>
+    //         <img></img>
+    //             <Card.Text>
+    //                 <Link to={`/books/local/${book.id}`}>View: { book.title }</Link>
+    //             </Card.Text>
+    //         </Card.Body>
+    //     </Card>
+    // ))
 
 
 
@@ -78,7 +116,6 @@ const BooksIndex = (props) => {
         </div>
     )
 }
-
 export default BooksIndex
 
 
