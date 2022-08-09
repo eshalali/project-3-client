@@ -26,7 +26,8 @@ const BooksIndex = (props) => {
     // const [img, setImg] = useState();
     const { msgAlert, triggerRefresh } = props
     const { favorites } = props
-    // const { user } = props
+    const { msgAlert } = props
+    const { user } = props
     
     // console.log('Props in BooksIndex', props)
     //res.data.books should grab local books
@@ -57,7 +58,6 @@ const BooksIndex = (props) => {
         return <p>No books yet. Better add some.</p>
     }
 
-
     const addRemoveFavorite = (book) => {
         console.log('book',  book)
             for (let i = 0; i<favorites.length; i++) {
@@ -80,7 +80,8 @@ const BooksIndex = (props) => {
                 <Link to={`/books/${book._id}`}>{ book.title }</Link>
             </Card.Header>
             <Card.Body>
-                <img src={`${book.imageLink}`} />
+                <img src={`${book.imageLink}`}/> 
+        
                 { addRemoveFavorite(book)
                     ?  
                     <div onClick={() => props.handleRemoveClick(book)} className='controls'>
