@@ -24,7 +24,7 @@ const BooksIndex = (props) => {
     // const [localBooks, setLocalBooks] = useState([])
     const [error, setError] = useState(false)
     // const [img, setImg] = useState();
-    const { msgAlert } = props
+    const { msgAlert, triggerRefresh } = props
     const { favorites } = props
     const { user } = props
 
@@ -58,11 +58,14 @@ const BooksIndex = (props) => {
     }
 
 
-    const addRemoveFavorite = (book, list) => {
-            for (let i = 0; i<list.length; i++) {
-                if(list[i]._id === book._id && user._id === book.userId) {
-                    console.log('list',list[i]._id)
-                    console.log('book use', book.userId)
+    const addRemoveFavorite = (book) => {
+        console.log('book',  book)
+            for (let i = 0; i<favorites.length; i++) {
+                // console.log('list id', favorites[i]._id)
+                // console.log('book id', book._id)
+                // console.log('user id', user._id)
+                // console.log('book user id', favorites[i].userId)
+                if(favorites[i]._id === book._id && user._id === favorites[i].userId) {
                     return true
                 }
             }
@@ -70,14 +73,16 @@ const BooksIndex = (props) => {
     }
 
 
-    const bookCards = books.map(book => (
-        <Card style={{ width: '30%', margin: 5}} key={ book._id }>
+    const bookCards = books.map((book) => {
+        addRemoveFavorite(book, favorites)
+    
+        return (<Card style={{ width: '30%', margin: 5}} key={ book._id }>
             <Card.Header>
                 <Link to={`/books/${book._id}`}>{ book.title }</Link>
             </Card.Header>
             <Card.Body>
                 <img src={`${book.imageLink}`} />
-                { addRemoveFavorite(book, favorites)
+                { addRemoveFavorite(book)
                     ?  
                     <div onClick={() => props.handleRemoveClick(book)} className='controls'>
                         <RemoveFavorite /> 
@@ -88,8 +93,8 @@ const BooksIndex = (props) => {
                     </div>        
                 }
             </Card.Body>
-        </Card>
-    ))
+        </Card>)
+})
 
     return (
         <div style={ cardContainerStyle }>

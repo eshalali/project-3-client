@@ -19,8 +19,6 @@ const FavoritesIndex = (props) => {
     const addRemoveFavorite = (book, list) => {
         for (let i = 0; i<list.length; i++) {
             if(list[i]._id === book._id && user._id === book.userId) {
-                // console.log('list',list[i]._id)
-                // console.log('book use', book.userId)
                 return true
             }
         }
