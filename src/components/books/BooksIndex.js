@@ -74,7 +74,6 @@ const BooksIndex = (props) => {
 
 
     const bookCards = books.map((book) => {
-        addRemoveFavorite(book, favorites)
     
         return (<Card style={{ width: '30%', margin: 5}} key={ book._id }>
             <Card.Header>

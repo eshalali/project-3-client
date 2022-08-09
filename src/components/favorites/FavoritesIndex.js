@@ -16,13 +16,18 @@ const FavoritesIndex = (props) => {
 
     const { showModal, setShowModal } = props
 
-    const addRemoveFavorite = (book, list) => {
-        for (let i = 0; i<list.length; i++) {
-            if(list[i]._id === book._id && user._id === book.userId) {
-                return true
+    const addRemoveFavorite = (book) => {
+        // console.log('book',  book)
+            for (let i = 0; i<favorites.length; i++) {
+                // console.log('list id', favorites[i]._id)
+                // console.log('book id', book._id)
+                // console.log('user id', user._id)
+                // console.log('book user id', favorites[i].userId)
+                if(favorites[i]._id === book._id && user._id === favorites[i].userId) {
+                    return true
+                }
             }
-        }
-        return false
+            return false
     }
 
     const favoriteBooks = favorites.map(book => {
@@ -34,7 +39,7 @@ const FavoritesIndex = (props) => {
                     </Card.Header>
                     <Card.Body>
                         <img src={`${book.imageLink}`} />
-                        { addRemoveFavorite(book, favorites)
+                        { addRemoveFavorite(book)
                             ?  
                             <div onClick={() => props.handleRemoveClick(book)} className='controls'>
                                 <RemoveFavorite /> 

@@ -66,7 +66,7 @@ const App = () => {
 			book.userId = user._id
 		}
 		// console.log(favorites)
-		const status = false
+		let status = false
 		// console.log(status)
 
 		function constainsBook(obj) {
@@ -93,13 +93,39 @@ const App = () => {
 	};
 
 	const handleRemoveClick = (book) => {
-		const updateFavoriteList = favorites.filter(
-			(favorite) => favorite._id !== book._id && favorite.userId !== book.userId
+		const findBook = favorites.findIndex(
+			(favorite) => favorite._id === book._id && favorite.userId === user._id
 		);
 		
-		if (user._id === book.userId) {
-			console.log('current user', user._id)
-			console.log('book user', book.userId)
+		// console.log('locate book', findBook)
+		const updateFavoriteList = favorites.filter(
+			(_, i) => i != findBook
+		)
+		
+		let status = false
+		// console.log(status)
+
+		function constainsUser(obj) {
+			for (let i = 0; i<favorites.length; i++) {
+				// console.log('favorites id', favorites[i]._id)
+				// console.log('obj id', obj._id)
+				// console.log('user id', user._id)
+				// console.log('book user id', book.userId)
+				if(favorites[i]._id === obj._id && user._id === favorites[i].userId) {
+					return status = true
+				}
+			}
+			// console.log(status)
+			return
+		}
+		constainsUser(book)
+
+		console.log('clicked')
+		console.log('book user id', book.userId)
+		
+		if (status) {
+			// console.log('current user', user._id)
+			// console.log('book user', book.userId)
 			setFavorites(updateFavoriteList);
 			saveToLocalStorage(updateFavoriteList);
 		}
