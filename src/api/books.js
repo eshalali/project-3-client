@@ -6,10 +6,13 @@ export const getAllBooks = () => {
     return axios(`${apiUrl}/books`)
 }
 
+export const getLocalBooks = () => {
+    return axios(`${apiUrl}/books`)
+}
+
 // READ => SHOW
-export const getOneBook = (id) => {
-    console.log("here is the ID", id)
-    return axios(`${apiUrl}/books/${id}`)
+export const getOneBook = async (id) => {
+    return axios(`${apiUrl}/books/google/${id}`)
 }
 
 // CREATE
