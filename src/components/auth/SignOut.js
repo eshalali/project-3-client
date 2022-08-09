@@ -14,7 +14,6 @@ const SignOut = (props) => {
 
     const onSignOut = () => {
 		signOut(user)
-            .then(() => setFavorites([]))
 			.finally(() =>
 				msgAlert({
 					heading: 'Signed Out Successfully',
