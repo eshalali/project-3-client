@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 
 import LoadingScreen from '../shared/LoadingScreen'
-import { getAllBooks } from '../../api/books'
+import { getAllBooks, getLocalBooks } from '../../api/books'
 import messages from '../shared/AutoDismissAlert/messages'
 import AddFavorite from '../favorites/AddFavorite'
 import RemoveFavorite from '../favorites/RemoveFavorite'
@@ -21,6 +21,7 @@ const cardContainerStyle = {
 
 const BooksIndex = (props) => {
     const [books, setBooks] = useState(null)
+    // const [localBooks, setLocalBooks] = useState([])
     const [error, setError] = useState(false)
     // const [img, setImg] = useState();
     const { msgAlert } = props
@@ -29,19 +30,19 @@ const BooksIndex = (props) => {
 
     // console.log('Props in BooksIndex', props)
     //res.data.books should grab local books
+
     useEffect(() => {
-        console.log(props)
         getAllBooks()
-            
-        .then(res => setBooks(res.data.data))
-        .catch(err => {
-            msgAlert({
-                heading: 'Error Getting Books',
-                message: messages.getBooksFailure,
-                variant: 'danger',
+            .then(res => {
+                setBooks(res.data.books)})
+            .catch(err => {
+                msgAlert({
+                    heading: 'Error Getting Books',
+                    message: messages.getBooksFailure,
+                    variant: 'danger',
+                })
+                setError(true)
             })
-            setError(true)
-        })
 
     }, [])
 
@@ -56,28 +57,26 @@ const BooksIndex = (props) => {
         return <p>No books yet. Better add some.</p>
     }
 
+
     const addRemoveFavorite = (book, list) => {
             for (let i = 0; i<list.length; i++) {
-                if(list[i].id === book.id) {
-                    console.log('working')
+                if(list[i]._id === book._id && user._id === book.userId) {
+                    console.log('list',list[i]._id)
+                    console.log('book use', book.userId)
                     return true
                 }
             }
             return false
     }
 
+
     const bookCards = books.map(book => (
-        <Card style={{ width: '30%', margin: 5}} key={ book.id }>
-            <Card.Header>{ book.volumeInfo.title }</Card.Header>
+        <Card style={{ width: '30%', margin: 5}} key={ book._id }>
+            <Card.Header>
+                <Link to={`/books/${book._id}`}>{ book.title }</Link>
+            </Card.Header>
             <Card.Body>
-                <Card.Text>
-                    <a href={`${book.volumeInfo.previewLink}`} target="_blank" rel="noopener noreferrer">
-                        <img src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api`}></img>
-                    </a>
-                </Card.Text>
-                <Card.Text>
-                    <Link to={`/book/:id`}>View { book.volumeInfo.title }</Link>
-                </Card.Text>
+                <img src={`${book.imageLink}`} />
                 { addRemoveFavorite(book, favorites)
                     ?  
                     <div onClick={() => props.handleRemoveClick(book)} className='controls'>
@@ -91,7 +90,6 @@ const BooksIndex = (props) => {
             </Card.Body>
         </Card>
     ))
-
 
     return (
         <div style={ cardContainerStyle }>

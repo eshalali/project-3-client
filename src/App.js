@@ -62,14 +62,17 @@ const App = () => {
 	};
 	
 	const handleFavoriteClick = (book) => {
+		book.userId = user._id
 		const newFavoriteList = [...favorites, book];
+		console.log('hello')
+		console.log(newFavoriteList)
 		// console.log(favorites)
 		let status = false
 		// console.log(status)
 
 		function constainsBook(obj, list) {
 			for (let i = 0; i<list.length; i++) {
-				if(list[i].id === obj.id) {
+				if(list[i]._id === obj._id && user._id === book.userId) {
 					return status = true
 				}
 			}
@@ -78,7 +81,7 @@ const App = () => {
 		constainsBook(book, favorites)
 		// console.log(status)
 		if (!status && user) {
-			// console.log('working')
+			console.log('working')
 			setFavorites(newFavoriteList);
 			saveToLocalStorage(newFavoriteList);
 		}
@@ -86,10 +89,10 @@ const App = () => {
 
 	const handleRemoveClick = (book) => {
 		const updateFavoriteList = favorites.filter(
-			(favorite) => favorite.id !== book.id
+			(favorite) => favorite._id !== book._id
 		);
 		
-		if (user) {
+		if (user._id === book.userId) {
 			setFavorites(updateFavoriteList);
 			saveToLocalStorage(updateFavoriteList);
 		}
@@ -112,7 +115,7 @@ const App = () => {
 						path='/sign-out'
 						element={
 						<RequireAuth user={user}>
-							<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
+							<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} setFavorites={setFavorites}/>
 						</RequireAuth>
 						}
 					/>
