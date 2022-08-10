@@ -26,7 +26,6 @@ const BooksIndex = (props) => {
     // const [img, setImg] = useState();
     const { msgAlert, triggerRefresh } = props
     const { favorites } = props
-    const { msgAlert } = props
     const { user } = props
     
     // console.log('Props in BooksIndex', props)
