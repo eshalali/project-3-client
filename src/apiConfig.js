@@ -6,7 +6,7 @@ const apiUrls = {
 }
 
 if (window.location.hostname === 'localhost') {
-	apiUrl = apiUrls.development
+	apiUrl = 'https://booknookapp.herokuapp.com/'
 } else {
 	apiUrl = apiUrls.production
 }
