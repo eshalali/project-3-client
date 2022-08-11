@@ -1,7 +1,7 @@
 let apiUrl
 const apiUrls = {
     // YOU MUST CHANGE PRODUCTION URL WHEN DEPLOYING
-	production: 'https://booknookapp.herokuapp.com/',
+	production: 'https://booknookapp.herokuapp.com',
 	development: 'http://127.0.0.1:8000',
 }
 
